@@ -1,0 +1,17 @@
+{
+    "name": "osw3/symfony-locale-tools",
+    "autoload": {
+        "psr-4": {
+            "OSW3\\LocaleTools\\": "src/"
+        }
+    },
+    "authors": [
+        {
+			"name": "Project Contributors",
+			"homepage": "https://github.com/osw3/symfony-locale-tools/graphs/contributors"
+        }
+    ],
+    "require": {
+        "symfony/intl": "*"
+    }
+}
