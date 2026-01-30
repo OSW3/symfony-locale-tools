@@ -23,3 +23,21 @@ framework:
             - fr
         providers:
 ```
+
+
+## Services
+
+```php 
+$localeToolsService->getCurrent() // string
+$localeToolsService->getDefault() // string
+$localeToolsService->getAvailable() // array[code, name]
+```
+
+
+## Twig 
+
+```twig
+{{ locale_current() }}
+{{ locale_default() }}
+{{ locale_available() }}
+```

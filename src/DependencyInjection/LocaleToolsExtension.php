@@ -40,38 +40,4 @@ class LocaleToolsExtension extends Extension // implements PrependExtensionInter
 		
 		$loader->load('services.yaml');
     }
-
-	/**
-	 * Prepend some data to the global app configuration
-	 *
-	 * @param ContainerBuilder $container
-	 *
-	 * @return void
-	 */
-	// public function prepend(ContainerBuilder $container)
-    // {
-    //     // Extend Twig configuration
-    //     // --
-
-    //     $twigConfig = [];
-	// 	// $this->extendsTwigConfig($twigConfig, Path::join(__DIR__, "/../../", "templates"), ucfirst(Configuration::NAME));
-
-    //     $container->prependExtensionConfig('twig', $twigConfig);
-    // }
-
-	/**
-	 * Add a path to extends twig sources
-	 *
-	 * @param array $twigConfig
-	 * @param string $directory
-	 * @param string $alias
-	 * @return void
-	 */
-	// private function extendsTwigConfig(array &$twigConfig, string $directory, string $alias) 
-	// {
-	// 	if (is_dir($directory))
-	// 	{
-	// 		$twigConfig['paths'][$directory] = $alias;
-	// 	}
-	// }
 }
