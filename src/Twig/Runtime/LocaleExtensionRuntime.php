@@ -10,12 +10,12 @@ class LocaleExtensionRuntime implements RuntimeExtensionInterface
         private LocaleToolsService $localeService
     ){}
 
-    public function getCurrent(): string
+    public function getCurrent(): array
     {
         return $this->localeService->getCurrent();
     }
 
-    public function getDefault(): string
+    public function getDefault(): array
     {
         return $this->localeService->getDefault();
     }
