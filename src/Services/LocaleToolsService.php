@@ -13,33 +13,39 @@ final class LocaleToolsService
         private RequestStack $request
     ){}
 
-    public function getCurrent(): string
+    public function getCurrent(): array
     {
-        $locale = null;
+        $code = null;
 
         // Locale in session
-        if ($locale === null) {
-            $locale = $this->request->getCurrentRequest()->getSession()->get('_locale');
+        if ($code === null) {
+            $code = $this->request->getCurrentRequest()->getSession()->get('_locale');
         }
 
-
         // Request Locale (URL or request parameter)
-        if ($locale === null) {
-            $locale = $this->request->getCurrentRequest()->getLocale();
+        if ($code === null) {
+            $code = $this->request->getCurrentRequest()->getLocale();
         }
 
         // Preferred Locale (from browser settings)
-        if ($locale === null) {
-            $locale = $this->request->getCurrentRequest()->getPreferredLanguage();
+        if ($code === null) {
+            $code = $this->request->getCurrentRequest()->getPreferredLanguage();
         }
 
         // Default locale
-        if ($locale === null) {
-            $locale = $this->getDefault();
+        if ($code === null) {
+            $code = $this->getDefault();
         }
 
         // Fallback locale if no locale is defined
-        return $locale ?? 'en';
+        if ($code === null) {
+            $code = 'en';
+        }
+        
+        return [
+            'code' => $code, 
+            'name' => $this->getName($code)
+        ];
     }
 
     /**
@@ -47,10 +53,15 @@ final class LocaleToolsService
      *
      * @return string
      */
-    public function getDefault(): string
+    public function getDefault(): array
     {
         $config = Yaml::parseFile($this->params->get('kernel.project_dir').'/config/packages/translation.yaml');
-        return $config['framework']['default_locale'] ?? 'en';
+        $code = $config['framework']['default_locale'] ?? 'en';
+
+        return [
+            'code' => $code, 
+            'name' => $this->getName($code)
+            ];
     }
 
     /**
@@ -66,8 +77,7 @@ final class LocaleToolsService
 
         foreach ($available as $code) 
         {
-            $name = Locales::getName( $code, $code );
-            $name = ucfirst($name);
+            $name = $this->getName($code);
 
             $choices[] = [
                 'code' => $code, 
@@ -76,5 +86,12 @@ final class LocaleToolsService
         }
 
         return $choices;
+    }
+
+    private function getName(string $code): ?string
+    {
+        $name = Locales::getName( $code, $code );
+        $name = ucfirst($name);
+        return $name;
     }
 }
