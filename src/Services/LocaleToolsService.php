@@ -13,6 +13,11 @@ final class LocaleToolsService
         private RequestStack $request
     ){}
 
+    /**
+     * Get current locale
+     *
+     * @return array
+     */
     public function getCurrent(): array
     {
         $code = null;
@@ -41,7 +46,7 @@ final class LocaleToolsService
         if ($code === null) {
             $code = 'en';
         }
-        
+
         return [
             'code' => $code, 
             'name' => $this->getName($code)
@@ -51,7 +56,7 @@ final class LocaleToolsService
     /**
      * Get default locale of translator
      *
-     * @return string
+     * @return array
      */
     public function getDefault(): array
     {
@@ -61,7 +66,7 @@ final class LocaleToolsService
         return [
             'code' => $code, 
             'name' => $this->getName($code)
-            ];
+        ];
     }
 
     /**
@@ -88,6 +93,12 @@ final class LocaleToolsService
         return $choices;
     }
 
+    /**
+     * Get locale name from code
+     *
+     * @param string $code
+     * @return string|null
+     */
     private function getName(string $code): ?string
     {
         $name = Locales::getName( $code, $code );
