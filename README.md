@@ -35,6 +35,15 @@ controllers:
 
 ```
 
+`config/services.yaml`
+
+```yaml
+services:
+    OSW3\LocaleTools\EventSubscriber\LocaleNegotiationSubscriber:
+        tags:
+            - { name: 'kernel.event_subscriber' }
+```
+
 ## Services
 
 ```php 
