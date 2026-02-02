@@ -24,6 +24,16 @@ framework:
         providers:
 ```
 
+`config/routes.yaml`
+
+```yaml
+controllers:
+    resource: routing.controllers
+    prefix: '/{_locale}'
+    requirements:
+        _locale: 'en|nl|fr|it|no' 
+
+```
 
 ## Services
 

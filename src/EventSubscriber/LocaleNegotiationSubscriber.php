@@ -7,7 +7,7 @@ use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-final class LocaleRedirectSubscriber implements EventSubscriberInterface
+final class LocaleNegotiationSubscriber implements EventSubscriberInterface
 {
     public function __construct(
         private readonly LocaleToolsService $localeService,
